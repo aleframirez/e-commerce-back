@@ -15,14 +15,14 @@ const validateJwT = async (req, res, next) => {
 
     const user = await User.findById(uid);
 
-    // Verificamos si el usuario existe en la DB
+    // Check if the User exist in the DB
     if (!user) {
       return res.status(401).json({
         msg: "Invalid token - User does not exist en DB",
       });
     }
 
-    // Verificamos si el uid tiene el status en true
+    // If the User status if false, send an error
     if (!user.status) {
       return res.status(401).json({
         msg: "Invalid token - User status: false",

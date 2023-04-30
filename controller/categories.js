@@ -12,7 +12,7 @@ const getCategories = async (req = request, res = response) => {
       .limit(Number(limit)),
   ]);
 
-  res.json({
+  res.status(200).json({
     msg: "GET /api/categories - Controller",
     total,
     categories,
@@ -23,7 +23,17 @@ const getCategoriesById = async (req = request, res = response) => {
   const { id } = req.params;
   const categorie = await Categorie.findById(id).populate("user", "name");
 
-  res.json(categorie);
+  // If the status is false, send an error.
+  if (!categorie.status) {
+    res.status(400).json({
+      msg: "This categorie has been deleted.",
+    });
+  }
+
+  res.status(200).json({
+    msg: "GET/:id /api/categories - Controller",
+    categorie,
+  });
 };
 
 const postCategorie = async (req = request, res = response) => {
@@ -51,7 +61,10 @@ const postCategorie = async (req = request, res = response) => {
   // Save in the DB
   await categorie.save();
 
-  res.status(201).json(categorie);
+  res.status(201).json({
+    msg: "POST /api/categories - Controller",
+    categorie,
+  });
 };
 
 const putCategorie = async (req = request, res = response) => {
@@ -63,7 +76,7 @@ const putCategorie = async (req = request, res = response) => {
 
   const categorie = await Categorie.findByIdAndUpdate(id, data, { new: true });
 
-  res.json({
+  res.status(200).json({
     msg: "PUT /api/categories - Controller",
     categorie,
   });
@@ -78,7 +91,10 @@ const deleteCategorie = async (req = request, res = response) => {
     { new: true }
   );
 
-  res.json(categorieDeleted);
+  res.status(200).json({
+    msg: "DELETE /api/categories - Controller",
+    categorieDeleted,
+  });
 };
 
 module.exports = {

@@ -55,8 +55,8 @@ router.delete(
   "/:id",
   [
     validateJwT,
-    isAdminRole, // Obliga a que deba ser administrador.
-    haveRole("ADMIN_ROLE"), // Puede ser cualquiera de los roles que le psemos por aqui.
+    isAdminRole, // It forces you to be an administrator.
+    haveRole("ADMIN_ROLE"), // It can be any of the roles that we give here.
     check("id", "Not a valid id").isMongoId(),
     check("id").custom(existUserId),
     validateFields,

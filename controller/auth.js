@@ -8,7 +8,7 @@ const login = async (req, res = response) => {
   const { email, password } = req.body;
 
   try {
-    // Verificamos si el corrreo existe
+    // Check if the email exists
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
@@ -16,14 +16,14 @@ const login = async (req, res = response) => {
       });
     }
 
-    // Si el usuario esta activo
+    // If the user status is false, send an error
     if (!user.status) {
       return res.status(400).json({
         msg: "User / Password incorrect - status: false",
       });
     }
 
-    // Verificamos el password
+    // Check for the password
     const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
       return res.status(400).json({
@@ -31,10 +31,10 @@ const login = async (req, res = response) => {
       });
     }
 
-    // Generar JwT
+    // Generate JwT
     const token = await generateJwT(user.id);
 
-    res.json({
+    res.status(200).json({
       msg: "Login Ok",
       user,
       token,
@@ -54,8 +54,8 @@ const googleSignIn = async (req, res = response) => {
     const { name, email, img } = await googleVerify(id_token);
     let user = await User.findOne({ email });
 
+    // If there is no user with that email, we create it.
     if (!user) {
-      // Si no existe ningun usuario con ese correo, lo creamos.
       const data = {
         name,
         email,
@@ -69,17 +69,17 @@ const googleSignIn = async (req, res = response) => {
       await user.save();
     }
 
-    // Si el usuario esta activo en la DB
+    // If the user status is false, send an error
     if (!user.status) {
       return res.status(401).json({
         msg: "Talk to administrator, user blocked",
       });
     }
 
-    // Generamos el JwT
+    // Generate JwT
     const token = await generateJwT(user.id);
 
-    res.json({
+    res.status(200).json({
       user,
       token,
     });

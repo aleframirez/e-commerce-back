@@ -52,6 +52,7 @@ router.put(
   putCategorie
 );
 
+// DELETE Categorie
 router.delete(
   "/:id",
   [

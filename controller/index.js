@@ -15,6 +15,14 @@ const {
   deleteUsers,
 } = require("../controller/user.js");
 
+const {
+  getProducts,
+  getProductById,
+  postProduct,
+  putProduct,
+  deleteProduct,
+} = require("../controller/products.js");
+
 module.exports = {
   login,
   googleSignIn,
@@ -27,4 +35,9 @@ module.exports = {
   postCategorie,
   putCategorie,
   deleteCategorie,
+  getProducts,
+  getProductById,
+  postProduct,
+  putProduct,
+  deleteProduct,
 };
