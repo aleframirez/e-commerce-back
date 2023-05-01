@@ -1,7 +1,7 @@
 {
   "name": "restserver-for-pokecardstore",
-  "version": "1.4.0",
-  "description": "PokeCardStore, es una tienda virtual de cartas de pokemon.",
+  "version": "1.6.0",
+  "description": "RestServer",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -23,6 +23,13 @@ const {
   deleteProduct,
 } = require("../controller/products.js");
 
+const {
+  searchUser,
+  searchCategories,
+  searchProducts,
+  search,
+} = require("../controller/search.js");
+
 module.exports = {
   login,
   googleSignIn,
@@ -40,4 +47,8 @@ module.exports = {
   postProduct,
   putProduct,
   deleteProduct,
+  searchUser,
+  searchCategories,
+  searchProducts,
+  search,
 };
