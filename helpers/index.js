@@ -4,9 +4,11 @@ const {
   validRole,
   existCategorieId,
   existProductById,
+  allowedCollections,
 } = require("../helpers/db-validators.js");
 const { generateJwT } = require("../helpers/generate-jwt.js");
 const { googleVerify } = require("../helpers/google-verify.js");
+const { uploadFile } = require("../helpers/upload-file.js");
 
 module.exports = {
   existUserId,
@@ -16,4 +18,6 @@ module.exports = {
   generateJwT,
   googleVerify,
   existProductById,
+  uploadFile,
+  allowedCollections,
 };

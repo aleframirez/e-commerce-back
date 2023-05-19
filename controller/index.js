@@ -30,6 +30,13 @@ const {
   search,
 } = require("../controller/search.js");
 
+const {
+  loadFile,
+  updateCloudinaryImage,
+  showImage,
+  updateImage,
+} = require("../controller/uploads.js");
+
 module.exports = {
   login,
   googleSignIn,
@@ -51,4 +58,8 @@ module.exports = {
   searchCategories,
   searchProducts,
   search,
+  loadFile,
+  updateCloudinaryImage,
+  showImage,
+  updateImage,
 };
