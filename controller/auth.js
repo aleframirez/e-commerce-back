@@ -3,6 +3,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const { generateJwT } = require("../helpers/generate-jwt");
 const { googleVerify } = require("../helpers/google-verify");
+const { sendEmail } = require("../helpers/send-email");
 
 const login = async (req, res = response) => {
   const { email, password } = req.body;
@@ -67,6 +68,7 @@ const googleSignIn = async (req, res = response) => {
 
       user = new User(data);
       await user.save();
+      sendEmail(name, email);
     }
 
     // If the user status is false, send an error

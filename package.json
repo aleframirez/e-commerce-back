@@ -1,6 +1,6 @@
 {
-  "name": "restserver-for-pokecardstore",
-  "version": "1.6.0",
+  "name": "restserver-for-ecommerce",
+  "version": "1.8.0",
   "description": "RestServer",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "google-auth-library": "^8.7.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.5",
+    "nodemailer": "^6.9.2",
     "uuid": "^9.0.0"
   }
 }

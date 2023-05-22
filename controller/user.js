@@ -1,6 +1,7 @@
 const { response, request } = require("express");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const { sendEmail } = require("../helpers/send-email");
 
 const getUsers = async (req = request, res = response) => {
   const { limit = 5, from = 0 } = req.query;
@@ -28,6 +29,8 @@ const postUsers = async (req, res = response) => {
 
   // Save in the DB
   await user.save();
+
+  await sendEmail(name, email, password)
 
   res.status(201).json({
     msg: "POST /api/users - Controller",
